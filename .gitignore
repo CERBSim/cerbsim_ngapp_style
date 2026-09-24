@@ -1,0 +1,5 @@
+**/__pycache__
+*.egg-info/
+build/
+dist/
+/src/cerbsim_ngapp_style/_version.py
