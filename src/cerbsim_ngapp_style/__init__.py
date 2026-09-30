@@ -453,7 +453,10 @@ css.add_rule(".cb-vp-legend .q-field__control:hover",
 css.add_rule(".cb-vp-legend .q-field--focused .q-field__control",
              Style(box_shadow="inset 0 -1px 0 var(--accent)"))
 css.add_rule(".cb-vp-legend .q-field--focused .q-field__native", Style(color="var(--accent)"))
-css.add_rule(".cb-vp-legend .q-field", Style(max_width="62px"))
+css.add_rule(".cb-legend-ticks .q-field", Style(width="0", min_width="100%"))
+css.add_rule(".cb-legend-ticks input[type=number]", Style(appearance="textfield"))
+css.add_rule(".cb-legend-ticks input::-webkit-inner-spin-button", Style(appearance="none", margin="0"))
+css.add_rule(".cb-legend-ticks input::-webkit-outer-spin-button", Style(appearance="none", margin="0"))
 # Click-to-edit controls popover, dropping below the legend (right-aligned).
 legend_pop = _cls(
     "cb-legend-pop",
@@ -471,7 +474,7 @@ legend_bar = _cls(
 css.add_rule(".cb-legend-bar:hover", Style(box_shadow="0 0 0 2px var(--ring)"))
 legend_ticks = _cls(
     "cb-legend-ticks", display="flex", flex_direction="column",
-    justify_content="space-between", height="128px",
+    justify_content="space-between", height="128px", min_width="10ch",
     font_family="var(--font-mono)", font_size="11.5px", color="var(--fg-muted)",
 )
 
