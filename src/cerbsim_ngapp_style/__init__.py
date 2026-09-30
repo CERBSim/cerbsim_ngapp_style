@@ -1340,6 +1340,15 @@ _MEDIA_DARK = (
 )
 
 
+def call_js_every_page(app, func, key=None):
+    """``app.call_js``, run again when a new browser page connects (if ngapp supports it)."""
+    try:
+        from ngapp.utils import call_js_every_page
+    except ImportError:
+        return app.call_js(func)
+    call_js_every_page(func, key)
+
+
 def install(app, default_theme="system"):
     """Load fonts, set the theme, apply brand colors and inject all styles.
 
@@ -1370,7 +1379,7 @@ def install(app, default_theme="system"):
         kf.textContent = _KEYFRAMES + _MEDIA_DARK
         js.document.head.appendChild(kf)
 
-    app.call_js(_boot)
+    call_js_every_page(app, _boot)
     css.inject(app)
 
 
@@ -1383,7 +1392,7 @@ def set_theme(app, name):
     def _set(js):
         js.document.documentElement.setAttribute("data-theme", resolved)
 
-    app.call_js(_set)
+    call_js_every_page(app, _set, key="cerbsim_ngapp_style.theme")
 
 
 def is_dark(js):
